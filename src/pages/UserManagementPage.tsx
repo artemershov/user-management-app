@@ -20,11 +20,13 @@ import {
     setUserFormModalOpenState,
     setDeleteModalOpenState,
     setSelectedUserId,
+    setCurrentPage,
     useGetUsersQuery,
     useDeleteUserMutation,
     useAddUserMutation,
     useEditUserMutation,
 } from '../redux';
+import { User } from '../types';
 
 export const UserManagementPage: FC = () => {
     const dispatch = useDispatch();
@@ -44,7 +46,10 @@ export const UserManagementPage: FC = () => {
         useEditUserMutation();
 
     const searchDebounce = useCallback(
-        debounce((value: string) => dispatch(setSearchValue(value)), 300),
+        debounce((value: string) => {
+            dispatch(setSearchValue(value));
+            dispatch(setCurrentPage(1));
+        }, 300),
         [dispatch]
     );
 
@@ -78,7 +83,7 @@ export const UserManagementPage: FC = () => {
         handleCloseDeleteModal();
     };
 
-    const handleUserFormSubmit = async (data: any) => {
+    const handleUserFormSubmit = async (data: User) => {
         selectedUserId
             ? await editUserFetcher(data)
             : await addUserFetcher(data);

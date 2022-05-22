@@ -6,11 +6,12 @@ import { StyledButton } from '../StyledButton';
 import UserFormInput from './UserFormInput';
 import UserFormPermissionsSelect from './UserFormPermissionsSelect';
 import { uiStateSelector, usersSelector } from '../../redux';
+import { User } from '../../types';
 
 const REQUIRED_ERROR_MESSAGE = 'This field is required';
 
 export interface UserFormProps {
-    onSubmit: (data: any) => void;
+    onSubmit: (data: User) => void;
 }
 
 export const UserForm: FC<UserFormProps> = ({ onSubmit }) => {
@@ -30,14 +31,6 @@ export const UserForm: FC<UserFormProps> = ({ onSubmit }) => {
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
-
-            <UserFormInput
-                label="Name Title:"
-                error={errors.nameTitle}
-                register={register('nameTitle', {
-                    required: REQUIRED_ERROR_MESSAGE,
-                })}
-            />
             <UserFormInput
                 label="First Name:"
                 error={errors.firstName}
@@ -63,13 +56,6 @@ export const UserForm: FC<UserFormProps> = ({ onSubmit }) => {
                 label="Location:"
                 error={errors.locations}
                 register={register('locations', {
-                    required: REQUIRED_ERROR_MESSAGE,
-                })}
-            />
-            <UserFormInput
-                label="Avatar URL:"
-                error={errors.avatar}
-                register={register('avatar', {
                     required: REQUIRED_ERROR_MESSAGE,
                 })}
             />

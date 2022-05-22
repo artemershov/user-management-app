@@ -51,7 +51,7 @@ export const UsersTableHeaderSortTitle: FC<UsersTableHeaderSortTitleProps> = ({
             <Typography sx={{ whiteSpace: 'nowrap' }}>
                 {title}
                 {isActive ? (
-                    sortDirection ? (
+                    sortDirection === SortDirection.ASC ? (
                         <ArrowDropUpIcon fontSize="small" sx={{ mb: '-4px' }} />
                     ) : (
                         <ArrowDropDownIcon
