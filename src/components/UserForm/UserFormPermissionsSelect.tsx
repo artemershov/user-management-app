@@ -33,7 +33,7 @@ export const UserFormPermissionsSelect: FC<UserFormPermissionsSelectProps> = ({
                         <FormControl disabled={disabled}>
                             <StyledSelect
                                 {...field}
-                                defaultValue={[]}
+                                value={field.value || []}
                                 size="small"
                                 disabled={disabled}
                                 multiple={true}
